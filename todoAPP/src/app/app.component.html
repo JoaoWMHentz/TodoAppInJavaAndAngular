@@ -1,0 +1,67 @@
+<body class="container-lg bg-dark p-md-2">
+  <nav>
+    <div>
+      <h1 class="text-bg-dark">Todo APP</h1>
+      <br>
+    </div>
+  </nav>
+  <section>
+    <div>
+      <h3 class="text-bg-dark">New Todo:</h3>
+      <form   (ngSubmit)="onSubmit()" [formGroup]="formG">
+        <div class="mb-3">
+          <label class="from-label text-bg-dark col-form-label-lg" data-bs-theme="dark" for="id">Id: </label>
+          <input class="form-control form-control-sm  text-bg-dark border-dark-subtle" name="id" formControlName="id" type="number">
+        </div>
+        <div class="mb-3">
+          <label class="from-label text-bg-dark col-form-label-lg " for="title">Title: </label>
+          <input class="form-control form-control-lg text-bg-dark border-dark-subtle" name="title" formControlName="title" type="text">
+        </div>
+        <div class="mb-3">
+          <label class="from-label text-bg-dark col-form-label-lg " for="leadTime">Lead Time: </label>
+          <input class="form-control form-control-lg text-bg-dark border-dark-subtle" name="leadTime" formControlName="leadTime" type="date">
+        </div>
+        <div class="mb-3">
+          <label class="from-label text-bg-dark col-form-label-lg" for="description">Description: </label>
+          <textarea class="form-control form-control-lg text-bg-dark border-dark-subtle" name="description" formControlName="description" rows="3"
+            cols="2"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-auto">
+            <button class="btn btn-outline-primary btn-dark"  [disabled]="!formG.valid" type="submit">Save</button>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-outline-warning btn-dark" type="reset">New</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section>
+    <div class="container-sm">
+      <div class="p-4" *ngFor="let item of source">
+        <div class="card card-body bg-dark border-dark-subtle mt-4">
+          <div>
+            <h3 class="text-bg-dark">{{item.title}}</h3>
+            <h5 class="text-bg-dark">{{formDate(item.leadTime)}}</h5>
+            <p class="text-bg-dark">{{item.description}}</p>
+            <div class="row">
+              <div class="col-auto">
+                <button class="btn btn-outline-secondary btn-dark">View</button>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-outline-danger" (click)="onRemove(item.id)" type="button">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <footer>
+    <div>
+      <p class="text-bg-dark">Developed by João Hentz</p>
+    </div>
+  </footer>
+</body>
