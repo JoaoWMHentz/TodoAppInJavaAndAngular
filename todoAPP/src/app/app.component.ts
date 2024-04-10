@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
   source: Array<Todo> = [];
   constructor(private formB: FormBuilder, private service: TodoService, private cdr: ChangeDetectorRef) {
     this.formG = this.formB.group({
-      id: [0,Validators.required],
+      id: [0, Validators.required],
       title: ['', Validators.required],
-      leadTime: ['',Validators.required],
+      leadTime: ['', Validators.required],
       description: ['']
     })
   }
@@ -35,13 +35,14 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    let todo: Todo = {...this.formG.value}
-    this.service.Post(todo).subscribe(todoes => { console.log(todoes) 
-    },error => alert("Error save tasks from server"));
+    let todo: Todo = { ...this.formG.value }
+    this.service.Post(todo).subscribe(todoes => {
+      console.log(todoes)
+    }, error => alert("Error save tasks from server"));
     this.ngOnInit();
   }
 
-  onRemove(id: number){
+  onRemove(id: number) {
     this.service.Delete(id);
     this.ngOnInit();
   }
